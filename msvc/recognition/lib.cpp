@@ -574,7 +574,7 @@ bool create_engine()
 
 	// j_recog_info(recog);
 	j_open_stream(recog, NULL);
-
+    
 	return true;
 }
 

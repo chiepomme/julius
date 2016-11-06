@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BD9216B1DCECDF8001F87F1 /* adin_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD920951DCECDF8001F87F1 /* adin_file.c */; };
+		4BD9216B1DCECDF8001F87F1 /* adin_mic.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD920951DCECDF8001F87F1 /* adin_mic.c */; };
 		4BD921791DCECDF9001F87F1 /* adin_sndfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD920A31DCECDF8001F87F1 /* adin_sndfile.c */; };
 		4BD9217A1DCECDF9001F87F1 /* adin_tcpip.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD920A41DCECDF8001F87F1 /* adin_tcpip.c */; };
 		4BD9217B1DCECDF9001F87F1 /* ds48to16.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD920A51DCECDF8001F87F1 /* ds48to16.c */; };
@@ -146,7 +146,7 @@
 		4BD9208F1DCECDE4001F87F1 /* tcpip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcpip.h; sourceTree = "<group>"; };
 		4BD920901DCECDE4001F87F1 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		4BD920911DCECDE4001F87F1 /* vocabulary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vocabulary.h; sourceTree = "<group>"; };
-		4BD920951DCECDF8001F87F1 /* adin_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adin_file.c; sourceTree = "<group>"; };
+		4BD920951DCECDF8001F87F1 /* adin_mic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = adin_mic.c; path = ../../libsent/src/adin/adin_mic.c; sourceTree = "<group>"; };
 		4BD920A31DCECDF8001F87F1 /* adin_sndfile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adin_sndfile.c; sourceTree = "<group>"; };
 		4BD920A41DCECDF8001F87F1 /* adin_tcpip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adin_tcpip.c; sourceTree = "<group>"; };
 		4BD920A51DCECDF8001F87F1 /* ds48to16.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ds48to16.c; sourceTree = "<group>"; };
@@ -274,6 +274,7 @@
 		4BD91EBA1DCECA4E001F87F1 = {
 			isa = PBXGroup;
 			children = (
+				4BD920951DCECDF8001F87F1 /* adin_mic.c */,
 				4BD920921DCECDF8001F87F1 /* src */,
 				4BD9207D1DCECDE4001F87F1 /* include */,
 				4BD91EC41DCECA4E001F87F1 /* Products */,
@@ -345,7 +346,6 @@
 		4BD920931DCECDF8001F87F1 /* adin */ = {
 			isa = PBXGroup;
 			children = (
-				4BD920951DCECDF8001F87F1 /* adin_file.c */,
 				4BD920A31DCECDF8001F87F1 /* adin_sndfile.c */,
 				4BD920A41DCECDF8001F87F1 /* adin_tcpip.c */,
 				4BD920A51DCECDF8001F87F1 /* ds48to16.c */,
@@ -636,7 +636,7 @@
 				4BD921CD1DCECDF9001F87F1 /* init_ngram.c in Sources */,
 				4BD921C21DCECDF9001F87F1 /* rdhmmdef_streamweight.c in Sources */,
 				4BD921BB1DCECDF9001F87F1 /* rdhmmdef.c in Sources */,
-				4BD9216B1DCECDF8001F87F1 /* adin_file.c in Sources */,
+				4BD9216B1DCECDF8001F87F1 /* adin_mic.c in Sources */,
 				4BD921D81DCECDF9001F87F1 /* calc_dnn.c in Sources */,
 				4BD921D71DCECDF9001F87F1 /* addlog.c in Sources */,
 				4BD9217A1DCECDF9001F87F1 /* adin_tcpip.c in Sources */,

@@ -45,6 +45,7 @@
 		4BD922771DCEDE77001F87F1 /* wchmm.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD922511DCEDE77001F87F1 /* wchmm.c */; };
 		4BD922781DCEDE77001F87F1 /* wchmm_check.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD922521DCEDE77001F87F1 /* wchmm_check.c */; };
 		4BD922791DCEDE77001F87F1 /* word_align.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD922531DCEDE77001F87F1 /* word_align.c */; };
+		4BD922861DCF4EAC001F87F1 /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD922851DCF4EAC001F87F1 /* version.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		4BD922521DCEDE77001F87F1 /* wchmm_check.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wchmm_check.c; sourceTree = "<group>"; };
 		4BD922531DCEDE77001F87F1 /* word_align.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = word_align.c; sourceTree = "<group>"; };
 		4BD9227A1DCEDF1E001F87F1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		4BD922851DCF4EAC001F87F1 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		4BD9222C1DCEDE76001F87F1 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				4BD922851DCF4EAC001F87F1 /* version.c */,
 				4BD9222D1DCEDE77001F87F1 /* adin-cut.c */,
 				4BD9222E1DCEDE77001F87F1 /* backtrellis.c */,
 				4BD9222F1DCEDE77001F87F1 /* beam.c */,
@@ -347,6 +350,7 @@
 				4BD922701DCEDE77001F87F1 /* recogmain.c in Sources */,
 				4BD9226E1DCEDE77001F87F1 /* plugin.c in Sources */,
 				4BD922571DCEDE77001F87F1 /* callback.c in Sources */,
+				4BD922861DCF4EAC001F87F1 /* version.c in Sources */,
 				4BD922781DCEDE77001F87F1 /* wchmm_check.c in Sources */,
 				4BD922711DCEDE77001F87F1 /* search_bestfirst_main.c in Sources */,
 				4BD922751DCEDE77001F87F1 /* useropt.c in Sources */,
