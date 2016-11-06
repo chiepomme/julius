@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3C7F81D17FCF5EDF53D547A99106ABE64F77D723",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1F932418EBC7FC7EFE3379E15940DA21F3A7CF96" : 9223372036854775807,
+    "3C7F81D17FCF5EDF53D547A99106ABE64F77D723" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1463CD68-86AF-49D7-B861-2014AB7366F0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1F932418EBC7FC7EFE3379E15940DA21F3A7CF96" : "iPhone-julius\/",
+    "3C7F81D17FCF5EDF53D547A99106ABE64F77D723" : "julius\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "juliuspomme",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "julius-ios\/julius\/juliuspomme.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:FLCLjp\/iPhone-julius.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1F932418EBC7FC7EFE3379E15940DA21F3A7CF96"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:chiepomme\/julius.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C7F81D17FCF5EDF53D547A99106ABE64F77D723"
+    }
+  ]
+}

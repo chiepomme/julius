@@ -13,7 +13,7 @@
 #include <intrin.h>
 #else
 #ifndef __arm__
-#include <cpuid.h>
+//#include <cpuid.h>
 #endif
 #endif	/* _WIN32 */
 

@@ -1,4 +1,8 @@
 #include "lib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
 
 static Jconf* jconf = nullptr;
 static Recog* recog = nullptr;
@@ -24,8 +28,7 @@ EXPORT_API void set_result_func(result_func_type result_func)
 
 EXPORT_API void initialize(char* jconf_path)
 {
-	jlog_set_output(fopen("julius-log.txt", "w"));
-
+    jlog_set_output(stderr);
 	clean_up_if_exists();
 
 	jconf = j_config_load_file_new(jconf_path);
@@ -185,9 +188,9 @@ static void on_result(Recog *recog, void *dummy)
 			case J_RESULT_STATUS_REJECT_SHORT:
 				debug_log("<input rejected by short input>\n");
 				break;
-			case J_RESULT_STATUS_REJECT_LONG:
-				debug_log("<input rejected by long input>\n");
-				break;
+//			case J_RESULT_STATUS_REJECT_LONG:
+//				debug_log("<input rejected by long input>\n");
+//				break;
 			case J_RESULT_STATUS_FAIL:
 				debug_log("<search failed>\n");
 				break;
@@ -368,9 +371,8 @@ static void on_result(Recog *recog, void *dummy)
 	}
 
 	setlocale(LC_ALL, "japanese");
-	size_t convert_count;
 	wchar_t wstr[65535];
-	mbstowcs_s(&convert_count, wstr, result_string, strlen(result_string) + 1);
+	mbstowcs(wstr, result_string, strlen(result_string) + 1);
 
 	// output_result(result_string);
 	output_result(wstr);

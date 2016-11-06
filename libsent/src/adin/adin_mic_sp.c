@@ -1,3 +1,4 @@
+#ifdef USE_SPLIB
 /**
  * @file   adin_mic_sp.c
  * 
@@ -183,3 +184,4 @@ adin_mic_input_name()
 {
   return("SP default device");
 }
+#endif

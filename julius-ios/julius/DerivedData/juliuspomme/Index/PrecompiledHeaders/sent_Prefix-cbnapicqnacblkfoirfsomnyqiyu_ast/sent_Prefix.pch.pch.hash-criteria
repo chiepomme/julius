@@ -1,0 +1,25 @@
+-x
+c
+-arch
+armv7
+-fretain-comments-from-system-headers
+-std=c99
+-fpascal-strings
+-O0
+-isysroot
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk
+-miphoneos-version-min=10.1
+-g
+-fembed-bitcode-marker
+-iquote
+-iquote
+-I/Users/chiepomme/julius/julius-ios/julius/DerivedData/juliuspomme/Build/Products/Debug-iphoneos/include
+-F/Users/chiepomme/julius/julius-ios/julius/DerivedData/juliuspomme/Build/Products/Debug-iphoneos
+-ferror-limit=10
+-working-directory=/Users/chiepomme/iPhone-julius/sent
+-Xclang
+-detailed-preprocessing-record
+arm-apple-darwin16.1.0
+"4.2.1 Compatible Apple LLVM 8.0.0 (clang-800.0.42.1)"
+SDK_PRODUCT_BUILD_VERSION=14B72
+14B72
