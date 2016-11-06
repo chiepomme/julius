@@ -11,7 +11,7 @@
 
 extern "C"
 {
-	typedef int(*audio_read_callback_func_type)(short*, int);
+	typedef short*(*audio_read_callback_func_type)(int, int*);
 	typedef void(*debug_log_func_type)(const char*);
 	typedef void(*result_func_type)(const wchar_t*);
 
