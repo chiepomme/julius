@@ -10,6 +10,7 @@ static Recog* recog = nullptr;
 static audio_read_callback_func_type audio_read_callback = nullptr;
 static debug_log_func_type debug_log = nullptr;
 static result_func_type output_result = nullptr;
+static FILE* log_file = nullptr;
 
 EXPORT_API void set_audio_callback(audio_read_callback_func_type callback)
 {
@@ -29,18 +30,19 @@ EXPORT_API void set_result_func(result_func_type result_func)
 EXPORT_API void initialize(char* jconf_path)
 {
     jlog_set_output(stderr);
+    
 	clean_up_if_exists();
-
+    
 	jconf = j_config_load_file_new(jconf_path);
 	recog = j_recog_new();
 
 	if (create_engine())
 	{
-		debug_log("エンジンの作成に成功しました");
+		debug_log("successfully engine created");
 	}
 	else
 	{
-		debug_log("エンジンの作成に失敗しました");
+		debug_log("failed engine created");
 	}
 
 	j_recognize_stream(recog);
@@ -54,6 +56,13 @@ EXPORT_API void stop()
 
 void clean_up_if_exists()
 {
+	if (log_file != nullptr)
+	{
+		jlog_flush();
+		fclose(log_file);
+		log_file = nullptr;
+	}
+
 	if (recog != nullptr)
 	{
 		// jconf will be released inside this
@@ -188,9 +197,9 @@ static void on_result(Recog *recog, void *dummy)
 			case J_RESULT_STATUS_REJECT_SHORT:
 				debug_log("<input rejected by short input>\n");
 				break;
-//			case J_RESULT_STATUS_REJECT_LONG:
-//				debug_log("<input rejected by long input>\n");
-//				break;
+  			case J_RESULT_STATUS_REJECT_LONG:
+  				debug_log("<input rejected by long input>\n");
+  				break;
 			case J_RESULT_STATUS_FAIL:
 				debug_log("<search failed>\n");
 				break;
@@ -379,6 +388,7 @@ static void on_result(Recog *recog, void *dummy)
 
 	/* flush output buffer */
 	fflush(stdout);
+	jlog_flush();
 }
 
 static void put_hypo_phoneme(WORD_ID *seq, int n, WORD_INFO *winfo)
@@ -400,40 +410,126 @@ static void put_hypo_phoneme(WORD_ID *seq, int n, WORD_INFO *winfo)
 	jlog("\n");
 }
 
-static boolean adin_standby(int _, void* __)
+/////////////////////////////
+
+/**
+* Device initialization: check device capability and open for recording.
+*
+* @param sfreq [in] required sampling frequency.
+* @param dummy [in] a dummy data
+*
+* @return TRUE on success, FALSE on failure.
+*/
+boolean adin_unity_standby(int sfreq, void *dummy)
 {
-	return true;
+	debug_log("mic_standby");
+	return TRUE;
 }
 
-static boolean ad_begin(char* _)
+/**
+* Open the portaudio device and check capability of the opening device.
+*
+* @param arg [in] argument: if number, use it as device ID
+*
+* @return TRUE on success, FALSE on failure.
+*/
+static boolean adin_unity_open(char *arg)
 {
-	return true;
+	debug_log("mic_open");
+	return TRUE;
 }
 
-static boolean ad_end()
+/**
+* Start recording.
+*
+* @param pathname [in] path name to open or NULL for default
+*
+* @return TRUE on success, FALSE on failure.
+*/
+boolean adin_unity_begin(char *arg)
 {
-	return true;
+	debug_log("mic_begin");
+	return TRUE;
 }
 
-static char* ad_input_name()
+/**
+* Stop recording.
+*
+* @return TRUE on success, FALSE on failure.
+*/
+boolean adin_unity_end()
 {
-	return nullptr;
+	debug_log("mic_end");
+	return TRUE;
 }
 
-static boolean ad_pause()
+/**
+* @brief  Read samples from device
+*
+* Try to read @a sampnum samples and returns actual number of recorded
+* samples currently available.  This function will block until
+* at least some samples are obtained.
+*
+* @param buf [out] samples obtained in this function
+* @param sampnum [in] wanted number of samples to be read
+*
+* @return actural number of read samples, -2 if an error occured.
+*/
+int adin_unity_read(SP16 *buf, int sampnum)
 {
-	return true;
+	int len = 0;
+	SP16* result = audio_read_callback(sampnum, &len);
+	if (len > 0)
+	{
+		jlog("len copied %d", len);
+		memcpy(buf, result, len * sizeof(SP16));
+	}
+	return len;
 }
 
-static boolean ad_terminate()
+/**
+* Function to pause audio input (wait for buffer flush)
+*
+* @return TRUE on success, FALSE on failure.
+*/
+boolean adin_unity_pause()
 {
-	return true;
+	return TRUE;
 }
 
-static boolean ad_resume()
+/**
+* Function to terminate audio input (disgard buffer)
+*
+* @return TRUE on success, FALSE on failure.
+*/
+boolean adin_unity_terminate()
 {
-	return true;
+	return TRUE;
 }
+
+/**
+* Function to resume the paused / terminated audio input
+*
+* @return TRUE on success, FALSE on failure.
+*/
+boolean adin_unity_resume()
+{
+	return TRUE;
+}
+
+/**
+*
+* Function to return current input source device name
+*
+* @return string of current input device name.
+*
+*/
+char *adin_unity_input_name()
+{
+	return "Unity Microphone";
+}
+
+////////////////////////
 
 bool create_engine()
 {
@@ -464,22 +560,21 @@ bool create_engine()
 
 	j_adin_init(recog);
 
-	/*
-	recog->adin->ad_standby = adin_standby;
-	recog->adin->ad_begin = ad_begin;
-	recog->adin->ad_end = ad_end;
-	recog->adin->ad_input_name = ad_input_name;
-	recog->adin->ad_read = audio_read_callback;
-	recog->adin->ad_pause = ad_pause;
-	recog->adin->ad_terminate = ad_terminate;
-	recog->adin->ad_resume = ad_resume;
-	*/
+	if (audio_read_callback != nullptr)
+	{
+		recog->adin->ad_standby = adin_unity_standby;
+		recog->adin->ad_begin = adin_unity_begin;
+		recog->adin->ad_end = adin_unity_end;
+		recog->adin->ad_input_name = adin_unity_input_name;
+		recog->adin->ad_read = adin_unity_read;
+		recog->adin->ad_pause = adin_unity_pause;
+		recog->adin->ad_terminate = adin_unity_terminate;
+		recog->adin->ad_resume = adin_unity_resume;
+	}
 
-	jlog("認識情報");
-	j_recog_info(recog);
-	jlog("ストリーム開く");
+	// j_recog_info(recog);
 	j_open_stream(recog, NULL);
-	jlog("ストリーム開けた");
 
 	return true;
 }
+
