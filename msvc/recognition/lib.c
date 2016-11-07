@@ -4,13 +4,13 @@
 #include <string.h>
 #include <locale.h>
 
-static Jconf* jconf = nullptr;
-static Recog* recog = nullptr;
+static Jconf* jconf = NULL;
+static Recog* recog = NULL;
 
-static audio_read_callback_func_type audio_read_callback = nullptr;
-static debug_log_func_type debug_log = nullptr;
-static result_func_type output_result = nullptr;
-static FILE* log_file = nullptr;
+static audio_read_callback_func_type audio_read_callback = NULL;
+static debug_log_func_type debug_log = NULL;
+static result_func_type output_result = NULL;
+static FILE* log_file = NULL;
 
 EXPORT_API void set_audio_callback(audio_read_callback_func_type callback)
 {
@@ -56,24 +56,24 @@ EXPORT_API void stop()
 
 void clean_up_if_exists()
 {
-	if (log_file != nullptr)
+	if (log_file != NULL)
 	{
 		jlog_flush();
 		fclose(log_file);
-		log_file = nullptr;
+		log_file = NULL;
 	}
 
-	if (recog != nullptr)
+	if (recog != NULL)
 	{
 		// jconf will be released inside this
 		j_recog_free(recog);
-		jconf = nullptr;
-		recog = nullptr;
+		jconf = NULL;
+		recog = NULL;
 	}
 
-	if (jconf != nullptr) {
-		j_jconf_free(nullptr);
-		jconf = nullptr;
+	if (jconf != NULL) {
+		j_jconf_free(NULL);
+		jconf = NULL;
 	}
 }
 
@@ -380,12 +380,13 @@ static void on_result(Recog *recog, void *dummy)
 	}
 
 	setlocale(LC_ALL, "japanese");
-	wchar_t wstr[65535];
-	mbstowcs(wstr, result_string, strlen(result_string) + 1);
+	//wchar_t wstr[65535];
+	//mbstowcs(wstr, result_string, strlen(result_string) + 1);
 
-	// output_result(result_string);
-	output_result(wstr);
+	//output_result(result_string);
+	//output_result(wstr);
 
+    output_result(result_string, (int)strlen(result_string));
 	/* flush output buffer */
 	fflush(stdout);
 	jlog_flush();
@@ -545,22 +546,22 @@ bool create_engine()
 	}
 
 	// Register callbacks
-	callback_add(recog, CALLBACK_EVENT_PROCESS_ONLINE, on_process_online, nullptr);
-	callback_add(recog, CALLBACK_EVENT_PROCESS_OFFLINE, on_process_offline, nullptr);
-	callback_add(recog, CALLBACK_EVENT_SPEECH_READY, on_speech_ready, nullptr);
-	callback_add(recog, CALLBACK_EVENT_SPEECH_START, on_speech_start, nullptr);
-	callback_add(recog, CALLBACK_EVENT_SPEECH_STOP, on_speech_stop, nullptr);
-	callback_add(recog, CALLBACK_EVENT_RECOGNITION_BEGIN, on_recognition_begin, nullptr);
-	callback_add(recog, CALLBACK_EVENT_RECOGNITION_END, on_recognition_end, nullptr);
-	callback_add(recog, CALLBACK_EVENT_PASS1_FRAME, on_pass1_frame, nullptr);
-	callback_add(recog, CALLBACK_EVENT_PAUSE, on_pause, nullptr);
-	callback_add(recog, CALLBACK_EVENT_RESUME, on_resume, nullptr);
-	callback_add(recog, CALLBACK_RESULT, on_result, nullptr);
-	callback_add(recog, CALLBACK_PAUSE_FUNCTION, on_pause_function, nullptr);
+	callback_add(recog, CALLBACK_EVENT_PROCESS_ONLINE, on_process_online, NULL);
+	callback_add(recog, CALLBACK_EVENT_PROCESS_OFFLINE, on_process_offline, NULL);
+	callback_add(recog, CALLBACK_EVENT_SPEECH_READY, on_speech_ready, NULL);
+	callback_add(recog, CALLBACK_EVENT_SPEECH_START, on_speech_start, NULL);
+	callback_add(recog, CALLBACK_EVENT_SPEECH_STOP, on_speech_stop, NULL);
+	callback_add(recog, CALLBACK_EVENT_RECOGNITION_BEGIN, on_recognition_begin, NULL);
+	callback_add(recog, CALLBACK_EVENT_RECOGNITION_END, on_recognition_end, NULL);
+	callback_add(recog, CALLBACK_EVENT_PASS1_FRAME, on_pass1_frame, NULL);
+	callback_add(recog, CALLBACK_EVENT_PAUSE, on_pause, NULL);
+	callback_add(recog, CALLBACK_EVENT_RESUME, on_resume, NULL);
+	callback_add(recog, CALLBACK_RESULT, on_result, NULL);
+	callback_add(recog, CALLBACK_PAUSE_FUNCTION, on_pause_function, NULL);
 
 	j_adin_init(recog);
 
-	if (audio_read_callback != nullptr)
+	if (audio_read_callback != NULL)
 	{
 		recog->adin->ad_standby = adin_unity_standby;
 		recog->adin->ad_begin = adin_unity_begin;

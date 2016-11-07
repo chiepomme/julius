@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4BD9227E1DCEDFF8001F87F1 /* lib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4BD9227C1DCEDFF8001F87F1 /* lib.cpp */; };
+		4BD9227E1DCEDFF8001F87F1 /* lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4BD9227C1DCEDFF8001F87F1 /* lib.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,7 @@
 		4BD91EA81DCECA03001F87F1 /* libjulius-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libjulius-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD91EB41DCECA13001F87F1 /* julius.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = julius.xcodeproj; sourceTree = "<group>"; };
 		4BD91ECF1DCECA58001F87F1 /* sent.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = sent.xcodeproj; sourceTree = "<group>"; };
-		4BD9227C1DCEDFF8001F87F1 /* lib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = lib.cpp; path = ../../../msvc/recognition/lib.cpp; sourceTree = "<group>"; };
+		4BD9227C1DCEDFF8001F87F1 /* lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lib.c; path = ../../../msvc/recognition/lib.c; sourceTree = "<group>"; };
 		4BD9227D1DCEDFF8001F87F1 /* lib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lib.h; path = ../../../msvc/recognition/lib.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +93,7 @@
 		4BD91EAA1DCECA03001F87F1 /* julius-ios */ = {
 			isa = PBXGroup;
 			children = (
-				4BD9227C1DCEDFF8001F87F1 /* lib.cpp */,
+				4BD9227C1DCEDFF8001F87F1 /* lib.c */,
 				4BD9227D1DCEDFF8001F87F1 /* lib.h */,
 			);
 			path = "julius-ios";
@@ -202,7 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BD9227E1DCEDFF8001F87F1 /* lib.cpp in Sources */,
+				4BD9227E1DCEDFF8001F87F1 /* lib.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

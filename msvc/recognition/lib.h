@@ -9,11 +9,9 @@
 #include "julius/juliuslib.h"
 #include <locale.h>
 
-extern "C"
-{
 	typedef short*(*audio_read_callback_func_type)(int, int*);
 	typedef void(*debug_log_func_type)(const char*);
-	typedef void(*result_func_type)(const wchar_t*);
+	typedef void(*result_func_type)(const char*, int);
 
 	EXPORT_API void set_audio_callback(audio_read_callback_func_type callback);
 	EXPORT_API void set_debug_log_func(debug_log_func_type debug_log_func);
@@ -21,7 +19,6 @@ extern "C"
 
 	EXPORT_API void initialize(char* jconf_path);
 	EXPORT_API void stop();
-}
 
 void clean_up_if_exists();
 bool create_engine();
